@@ -1,0 +1,221 @@
+[
+{
+    "id": "1",
+    "type":"1",
+    "question": "Which of the following is NOT a pillar of OOP?",
+    "options": [
+    "Inheritance",
+    "Polymorphism",
+    "Abstraction",
+    "Recursion"
+    ]
+
+},
+{
+    "id": "2",
+    "type":"1",
+    "question": "What does encapsulation in OOP refer to?",
+    "options": [
+    "Binding data with methods that manipulate the data",
+    "Hiding the implementation details of an object",
+    "Creating multiple instances of a class",
+    "Inheriting properties and behavior from another class"
+    ]
+},
+{
+    "id": "3",
+    "type":"1",
+    "question": "Inheritance allows a class to:",
+    "options": [
+    "Access private members of another class",
+    "Override methods of its superclass",
+    "Implement multiple interfaces simultaneously",
+    "All of the above"
+    ]
+},
+    {
+    "id": "4",
+    "type":"1",
+    "question": "Which keyword is used to prevent a class from being inherited?",
+    "options": [
+    "final",
+    "abstract",
+    "static",
+    "private"
+    ]
+},
+   {
+    "id": "5", 
+    "type":"1",
+    "question": "Polymorphism in OOP is best described as:",
+    "options": [
+    "Having multiple methods with the same name but different parameters",
+    "An object's ability to take on many forms",
+    "The process of creating objects from classes",
+    "Hiding the internal state and requiring interaction through public methods"
+    ]
+},
+{
+    "id": "6",
+    "type":"1",
+    "question": "What is the primary purpose of an abstract class in OOP?",
+    "options": [
+    "To prevent the instantiation of a class",
+    "To provide a blueprint for other classes to inherit and implement",
+    "To define only static methods",
+    "To encapsulate private data within a class"
+    ]
+},
+ {  "id": "7",
+   "type":"1",
+    "question": "Which of the following is a feature of interface in Java?",
+    "options": [
+    "It can have method implementations.",
+    "An interface cannot be implemented by a class.",
+    "It can have constructors.",
+    "An interface can extend multiple interfaces."
+    ]},
+
+  {  
+    "id": "8",
+    "type":"1",
+    "question":  "Which concept refers to the ability of an object to take many forms?",
+    "options": [
+   "Inheritance",
+   "Encapsulation",
+   "Polymorphism",
+   "Abstraction"
+    ]},
+
+   { 
+    "id": "9",
+    "type":"1",
+    "question":  "In OOP, What is a constructor used for?",
+    "options": [
+    "Initializing an object's state",
+    "Defining the methods of a class",
+    "Providing an interface to access private members",
+    "Inheriting properties from another class"
+    ]},
+   { 
+   "id": "10", 
+   "type":"1",
+   "question": "Which OOP principle promotes code reusability by allowing a new class to inherit properties and behavior from an existing class?",
+    "options": [
+    "Encapsulation",
+    "Polymorphism",
+    "Inheritance",
+    "Abstraction"
+    ]},
+
+   {
+    "id": "11", 
+    "type":"1",
+    "question":  "Which of the following best defines an object in OOP?",
+    "options": [
+    "An instance of a class that represents a real-world entity",
+    "A set of methods without any data",
+    "A variable that holds primitive data types",
+    "A function that performs specific operations"
+    ]
+},
+   { 
+"id": "12", 
+"type":"1",
+   "question":  "What is the concept of method overloading in OOP?",
+    "options": [
+    "Providing multiple methods with the same name but different return types",
+    "Redefining a method in a subclass",
+    "Writing methods with the same name but different parameters",
+    "Hiding the internal details of a method"
+    ]
+},
+   { 
+   "id": "13", 
+   "type":"1",
+   "question":  "What does the term 'super' refer to in Java?",
+    "options": [
+    "It points to the superclass constructor.",
+    "It represents the current object instance.",
+    "It invokes the method of the current class.",
+    "It refers to a static method of the class."
+    ]
+},
+   { 
+    "id": "14",
+    "type":"1",
+    "question":  "Which keyword is used in Java to implement method overriding?",
+    "options": [
+    "override",
+    "virtual",
+    "extend",
+    "@Override"
+    ]
+},
+   { 
+    "id": "15",
+    "type":"1",
+    "question":  "What is the main difference between an abstract class and an interface in Java?",
+    "options": [
+    "An abstract class can have both abstract and concrete methods, while an interface can only have abstract methods.",
+    "An interface can have constructors, while an abstract class cannot.",
+    "An abstract class cannot be inherited, while an interface can be inherited.",
+    "An abstract class can have multiple inheritance, while an interface cannot."
+    ]},
+
+   {
+    "id": "16", 
+    "type":"1",
+    "question":  "Which principle in OOP suggests that a subclass object can be used wherever a superclass object is expected?",
+    "options": [
+    "Inheritance",
+    "Encapsulation",
+    "Polymorphism",
+    "Abstraction"
+    ]
+},
+  { 
+    "id": "17", 
+    "type":"1",
+    "question":  "What is the purpose of the 'this' keyword in Java?",
+    "options": [
+    "It refers to the current instance of the class.",
+    "It invokes the superclass constructor.",
+    "It represents a static context.",
+    "It is used to initialize static variables."
+    ]},
+
+   { 
+   "id": "18", 
+   "type":"1",
+   "question":  "In OOP, What is the term used for creating a new class by extending an existing class?",
+    "options": [
+    "Abstraction",
+    "Composition",
+    "Inheritance",
+    "Polymorphism"
+    ]
+},
+  { 
+    "id": "19", 
+    "type":"1",
+    "question":  "Which OOP concept is used to implement code reuse by allowing a new class to contain properties and methods of an existing class?",
+    "options": [
+    "Inheritance",
+    "Encapsulation",
+    "Polymorphism",
+    "Abstraction"
+    ]
+},
+    {
+    "id": "20", 
+    "type":"1",   
+    "question":  "What is the significance of the 'static' keyword in Java?",
+    "options": [
+    "It is used to create constant variables.",
+    "It indicates that a variable or method belongs to the class rather than to the instances.",
+    "It defines a method that can be overridden in subclasses.",
+    "It is used to allocate memory for an object."
+    ]
+}
+]

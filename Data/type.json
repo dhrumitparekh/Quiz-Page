@@ -1,0 +1,15 @@
+[
+    {   "type_id" : "1",
+        "qtype":"coding"
+    },
+    
+    {   "type_id" : "2",
+        "qtype":"Physical Education"
+    },
+    
+    {    "type_id" : "3",
+        "qtype":"Maths"
+    }
+    
+]
+      

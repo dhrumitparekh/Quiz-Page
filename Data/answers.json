@@ -1,0 +1,22 @@
+[
+{"answerId": "1","answer": "Recursion"},
+{"answerId": "2","answer":  "Hiding the implementation details of an object"},
+{"answerId": "3","answer":  "Override methods of its superclass"},
+{"answerId": "4","answer":  "final"},
+{"answerId": "5","answer":  "An object's ability to take on many forms"},
+{"answerId": "6","answer":  "To provide a blueprint for other classes to inherit and implement"},
+{"answerId": "7","answer":  "An interface can extend multiple interfaces."},
+{"answerId": "8","answer":  "Polymorphism"},
+{"answerId": "9","answer":  "Initializing an object's state"},
+{"answerId": "10","answer":  "Inheritance"},
+{"answerId": "11","answer":  "An instance of a class that represents a real-world entity"},
+{"answerId": "12","answer":  "Writing methods with the same name but different parameters"},
+{"answerId": "13","answer":  "It points to the superclass constructor."},
+{"answerId": "14","answer":  "@Override"},
+{"answerId": "15","answer":  "An abstract class can have both abstract and concrete methods, while an interface can only have abstract methods."},
+{"answerId": "16","answer":  "Polymorphism"},
+{"answerId": "17","answer":  "It refers to the current instance of the class."},
+{"answerId": "18","answer":  "Inheritance"},
+{"answerId": "19","answer":  "Inheritance"},
+{"answerId": "20","answer":  "It indicates that a variable or method belongs to the class rather than to the instances."}
+]
