@@ -217,5 +217,16 @@
     "It defines a method that can be overridden in subclasses.",
     "It is used to allocate memory for an object."
     ]
+},
+{
+    "id": "21", 
+    "type":"2", 
+    "question": "Which of the following is a primary component of physical fitness?",
+    "options": [
+      "Flexibility",
+      "Knowledge",
+      "Patience",
+      "Creativity"
+    ]
 }
 ]
