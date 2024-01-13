@@ -19,39 +19,42 @@ QuizData.Initialize()
     res.sendFile(path.join(__dirname, './views/home.html'));
   });
 
+
   Data.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, './views/about.html'));
   });
 
-Data.get('/questions',(req,res)=>{
+Data.get('/questions',async(req,res)=>{
+  const QuestType = req.query.type;
+  try{
+    if(QuestType)
+    {
+      const quest = await QuizData.getQuestionsByType(QuestType);
+      res.json(quest);
+    }
+    else
+    {
     QuizData.getAllQuestions()
     .then((Data) => {
         res.json(Data);
       })
-    });
+    }
+    }
+    catch 
+    {
+      res.status(404).json({error:error});
+    }
+  });
+  
   
  
-    Data.get('/questions/get_Question',(req,res)=>{
-        const Questid = "3";
-  QuizData.getQuestionsById(Questid).then((Que)=>
-  {
-    res.json(Que);
-  }).catch((error) => {
-    res.status(404).json({ error: error });
-  });
+    Data.get('/questions/get_Question/:id', (req, res) => {
+      const Questid = req.params.id; 
+      QuizData.getQuestionsById(Questid)
+        .then((Que) => {
+          res.json(Que);
+        })
+        .catch((error) => {
+          res.status(404).json({ error: error });
+        });
     });
-
-  
-  
-    Data.get('/questions/get_QuestType',(req,res)=>
-    {
-      const Type = "coding";
-      QuizData.getQuestionsByType(Type).then((Titles)=>{
-        res.json(Titles);
-      })
-      .catch((error)=>{
-        res.status(404).json({ error: error });
-      })
-    });
-  
-  
