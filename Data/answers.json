@@ -18,5 +18,6 @@
 {"answerId": "17","answer":  "It refers to the current instance of the class."},
 {"answerId": "18","answer":  "Inheritance"},
 {"answerId": "19","answer":  "Inheritance"},
-{"answerId": "20","answer":  "It indicates that a variable or method belongs to the class rather than to the instances."}
+{"answerId": "20","answer":  "It indicates that a variable or method belongs to the class rather than to the instances."},
+{"answerId":"21" ,"answer": "Flexibility"}
 ]
