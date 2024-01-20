@@ -1,15 +1,17 @@
 [
     {   "type_id" : "1",
-        "qtype":"coding"
+        "qtype":"coding",
+        "Img":"https://imgs.search.brave.com/nfrrF8YIrDXeV2Mv9ZH8rrUFg4x4DY86KOSO55GoHPg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzg4LzkxLzA1/LzM2MF9GXzE4ODkx/MDUxMF9YWFFQMnZn/V1JPRVpvMFk4N21v/UFUzQzdCZjFYd1JS/Sy5qcGc"
     },
     
     {   "type_id" : "2",
-        "qtype":"Physical Education"
+        "qtype":"Physical Education",
+        "Img":"https://imgs.search.brave.com/HG4ULdWdiWudFZTHkZX3sonykPDO5YIDznT5G7JHnLY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzE2LzMwLzQ0/LzM2MF9GXzUxNjMw/NDQyOV8yYXQzU05o/QmN3RU1Yc2JQeVJw/eTlDeTc5R2FGN1N2/WC5qcGc"
     },
     
     {    "type_id" : "3",
-        "qtype":"Maths"
+        "qtype":"Maths",
+         "Img":"https://imgs.search.brave.com/33c_ESRhtfu_D5m7k8qkcH1djDR2wpx9MdfEekQWsdc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzM4LzU2LzQ3/LzM2MF9GXzIzODU2/NDc1N19MN2dzeWtq/dlplMlNkdG55ZmEw/bUhkMGZPYkhVNGY1/Ry5qcGc"
     }
-    
 ]
       
