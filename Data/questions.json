@@ -228,5 +228,60 @@
       "Patience",
       "Creativity"
     ]
-}
+},
+{
+    "id": "22",
+    "type": "2",
+    "question": "What is the recommended duration for moderate-intensity aerobic exercise for adults per week?",
+    "options": [
+      "30 minutes",
+      "60 minutes",
+      "90 minutes",
+      "120 minutes"
+    ]
+  },
+  {
+    "id": "23",
+    "type": "2",
+    "question": "Which of the following is an anaerobic exercise?",
+    "options": [
+      "Running",
+      "Cycling",
+      "Weightlifting",
+      "Swimming"
+    ]
+  },
+  {
+    "id": "24",
+    "type": "2",
+    "question": "In which sport would you perform a slam dunk?",
+    "options": [
+      "Basketball",
+      "Soccer",
+      "Tennis",
+      "Volleyball"
+    ]
+  },
+  {
+    "id": "25",
+    "type": "2",
+    "question": "What is the purpose of the warm-up phase in a workout?",
+    "options": [
+      "To cool down the body",
+      "To prepare the body for exercise",
+      "To increase flexibility",
+      "To reduce muscle soreness"
+    ]
+  },
+  {
+    "id": "26",
+    "type": "2",
+    "question": "Which muscle is targeted in a bicep curl exercise?",
+    "options": [
+      "Quadriceps",
+      "Hamstrings",
+      "Biceps",
+      "Triceps"
+    ]
+  }
 ]
