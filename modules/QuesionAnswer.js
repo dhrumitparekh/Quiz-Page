@@ -56,4 +56,14 @@ function getQuestionsByType(quetype) {
   });
 }
 
-module.exports = { Initialize,getAllQuestions,getQuestionsById,getQuestionsByType };
+const getAllTypes = async () => {
+  try {
+    const test = await types;
+    return test;
+  } catch (err) {
+    throw err;
+  }
+};
+
+
+module.exports = { Initialize,getAllQuestions,getQuestionsById,getQuestionsByType,getAllTypes };
