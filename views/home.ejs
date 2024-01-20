@@ -3,14 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Quiz</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body class="bg-gray-200">
-  <nav class="bg-white px-4 text-black p-2">
-    <a href="/" class="text-black text-2xl font-bold">Home</a>
-    <a href="/about"class="text-black text-2xl font-bold">About</a>
-  </nav>
+  <%- include('partials/navbar', {page: '/'}) %>
   <div class="container mx-auto p-8">
     <div class="max-w-md mx-auto bg-white rounded-md shadow-md p-6" id="quizContainer">
       <h2 id="question" class="text-lg font-bold mb-4">Question</h2>
@@ -36,6 +32,12 @@
         options: [ 'Inheritance','Polymorphism','Abstraction','Recursion'],
         correctAnswer: 'Recursion'
       },
+      {
+        question: 'Which of the following is NOT a pillar of OOP?',
+        options: [ 'Inheritance','Polymorphism','Abstraction','Recursion'],
+        correctAnswer: 'Recursion'
+      },
+      
       
     ];
 
