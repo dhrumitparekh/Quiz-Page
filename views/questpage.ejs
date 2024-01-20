@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Types</title>
+ 
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="flex flex-wrap gap-4 p-4">
+ 
+  <div class="hero min-h-32 bg-base-200"> 
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">Quizzes</h1>
+        <p class="py-6">Select any of the quiz from Below :</p>
+      </div>
+    </div>
+  </div>
+
+  <% Type.forEach((typ) => { %>
+    <div class="card w-96 bg-base-100 shadow-xl image-full">
+      <figure><img src="<%= typ.Img %>" alt="Image" class="w-full h-48 object-cover rounded-t-md" /></figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title"></h2>
+       <br><br><br>
+        <div class="card-actions">
+          <button class="btn btn-primary" onclick="location.href='/questions?type=<%= typ.qtype %>'"><%= typ.qtype %></button>
+      </div>
+      </div>
+    </div>
+  <% }) %>
+
+  <script>
+    function handleButtonClick(boxNumber) {
+      alert(`Button clicked for Box ${boxNumber}`);
+    }
+  </script>
+
+</body>
+</html>
