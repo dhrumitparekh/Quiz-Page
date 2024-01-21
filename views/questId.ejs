@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="bg-gray-200">
+  <% include('partials/navbar', {page: '/questions/get_Question/:id'}) %>
+  <div class="container mx-auto p-8">
+    <div class="max-w-md mx-auto bg-white rounded-md shadow-md p-6 question-container" id="quizContainer0">
+      <h2 class="text-lg font-bold mb-4">Question <%= questions.id %> (Type:<%= questions.type %>)</h2>
+      <p><%= questions.question %></p>
+      
+
+      <div id="options">
+        <% questions.options.forEach((option, index) => { %>
+          <label>
+            <input type="radio" id="test" name="option" value="<%= index %>" onclick="checkAnswer('<%= option %>', '<%= questions.answer %>')">
+            <%= option %>
+          </label><br>
+        <% }) %>
+      </div>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" id="nextButton" onclick="showScore()">Check</button>
+    </div>
+
+    <div class="hidden mt-8" id="scoreContainer">
+      <h2 class="text-lg font-bold mb-4">Quiz Score</h2>
+      <p id="correctAnswers"></p>
+    </div>
+  </div>
+
+  <script>
+    let currentScore = 0;
+
+    function checkAnswer(selectedOption, correctOption) {
+      if (selectedOption == correctOption) {
+        currentScore += 100;
+      }
+    }
+
+    function showScore() {
+      document.getElementById('scoreContainer').style.display = 'block';
+
+      const correctAnswersElement = document.getElementById('correctAnswers');
+      correctAnswersElement.textContent = `Correct Answers: ${currentScore / 100}`;
+    }
+  </script>
+</body>
+</html>
