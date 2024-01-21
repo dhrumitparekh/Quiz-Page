@@ -42,7 +42,7 @@ QuizData.Initialize()
     }
   });
 
-    Data.get("//",async (req, res) => {
+    Data.get("/TypePage",async (req, res) => {
       try {
         const Type = await QuizData.getAllTypes();
         res.render("questpage", { Type });
@@ -53,13 +53,17 @@ QuizData.Initialize()
     
 
  
-    Data.get('/questions/get_Question/:id', (req, res) => {
+    Data.get('/questions/get_Question/:id',async(req, res) => {
       const Questid = req.params.id; 
-      QuizData.getQuestionsById(Questid)
-        .then((Que) => {
-          res.json(Que);
-        })
-        .catch((error) => {
-          res.status(404).json({ error: error });
-        });
+      try{
+        const specificquest = await QuizData.getQuestionsById(Questid);
+        res.render("questId",{questions:specificquest});
+      }catch(error){
+        res.render("404", { message: `Error: ${err.message}` });
+        }
     });
+
+  
+  
+
+  
