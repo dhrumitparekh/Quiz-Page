@@ -283,5 +283,50 @@
       "Biceps",
       "Triceps"
     ]
-  }
+  },
+{
+  "id": "27",
+  "type": "3",
+  "question": "Solve the equation: 2x + 5 = 15",
+  "options": [
+    "x = 5",
+    "x = 10",
+    "x = 7",
+    "x = 3"
+  ]
+},
+{
+  "id": "28",
+  "type": "3",
+  "question": "What is the value of pi (π) to two decimal places?",
+  "options": [
+    "3.14",
+    "3.16",
+    "3.12",
+    "3.18"
+  ]
+},
+{
+  "id": "29",
+  "type": "3",
+  "question": "If a triangle has angles A, B, and C, and angle A = 40 degrees, angle B = 70 degrees, what is the measure of angle C?",
+  "options": [
+    "50 degrees",
+    "60 degrees",
+    "70 degrees",
+    "30 degrees"
+  ]
+},
+{
+  "id": "30",
+  "type": "3",
+  "question": "If a rectangle has a length of 8 units and a width of 5 units, what is its perimeter?",
+  "options": [
+    "16 units",
+    "26 units",
+    "40 units",
+    "13 units"
+  ]
+}
+
 ]
