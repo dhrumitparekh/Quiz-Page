@@ -1,0 +1,51 @@
+
+
+<link rel="stylesheet" href="/css/main.css">
+<%- include('partials/navbar',{page:'/questions/editQuestion'}) %>
+
+<div class="container mx-auto">
+    <div class="hero bg-base-200 rounded-lg p-6">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Edit Question</h1>
+                <p class="py-6">Use the form below to edit the question</p>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <form action="/questions/editQuestion" method="post">
+        <div class="mb-4">
+            <label for="id" class="block text-sm font-semibold">Question ID :</label>
+            <input type="number" id="id" name="id" value="<%= Quests.id %>" required class="w-full p-2 border rounded" readonly>
+        </div>
+
+        <div class="mb-4">
+            <label for="question" class="block text-sm font-semibold">Question :</label>
+            <input type="text" id="question" name="question" value="<%= Quests.question %>" required class="w-full p-2 border rounded">
+        </div>
+
+      
+        <% const optionsArray = Quests.options ? Quests.options.replace(/[{}"]/g, '').split(',').map(option => option.trim()) : []; %>
+
+        <% for (let i = 1; i <= 4; i++) { %>
+            <div class="mb-4 flex items-center">
+                <input type="radio" id="options<%= i %>" name="options" value="<%= i %>" <% if (optionsArray.includes(optionsArray[i - 1])) { %> checked <% } %> required>
+                <label for="option<%= i %>" class="block text-sm font-semibold ml-2">Option <%= i %>:</label>
+                <input type="text" id="option<%= i %>" name="option<%= i %>" value="<%= optionsArray[i - 1] || '' %>" required class="w-full p-2 border rounded ml-2">
+            </div>
+        <% } %>
+        
+
+        <div class="mb-4">
+            <label for="answer" class="block text-sm font-semibold">Correct Answer:</label>
+            <span id="displayedAnswer" class="block text-sm ml-2"><%= Quests.correctAnswer %></span>
+            <input type="hidden" id="answer" name="answer" value="<%= Quests.correctAnswer %>" required>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-success">Update</button>
+        </div>
+    </form>
+</div>
