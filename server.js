@@ -31,19 +31,18 @@ QuizData.Initialize()
   Data.get('/questions', async (req, res) => {
     const QuestType = req.query.type;
     try {
-
       if (QuestType) {
         const quest = await QuizData.getQuestionsByType(QuestType);
-        res.render('mainpage', { quest });  
-      } 
-      else {
+        res.render('mainpage', { quest });
+      } else {
         const allQuestions = await QuizData.getAllQuestions();
-        res.render('mainpage', {  quest : allQuestions });  
+        res.render('mainpage', { quest: allQuestions });
       }
     } catch (error) {
       res.status(404).render('mainpage', { error: error.message });
     }
   });
+  
 
     Data.get("/TypePage",async (req, res) => {
       try {
@@ -97,7 +96,6 @@ QuizData.Initialize()
       try {
         const Quests = await QuizData.getQuestionsById(req.params.id);
         const Types = await QuizData.getAllTypes();
-    
         res.render('editQuestions', { Quests, Types });
       } catch (err) {
         res.status(404).render('404', { message: err.message });
@@ -116,8 +114,3 @@ QuizData.Initialize()
         res.status(404).render('404', { message: `Error: ${err}` });
       }
     });
-
-  
-  
-
-  
