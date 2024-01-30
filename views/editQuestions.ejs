@@ -1,5 +1,3 @@
-
-
 <link rel="stylesheet" href="/css/main.css">
 <%- include('partials/navbar',{page:'/questions/editQuestion'}) %>
 
@@ -26,25 +24,17 @@
             <input type="text" id="question" name="question" value="<%= Quests.question %>" required class="w-full p-2 border rounded">
         </div>
 
-      
-        <% const optionsArray = Quests.options ? Quests.options.replace(/[{}"]/g, '').split(',').map(option => option.trim()) : []; %>
-
-        <% for (let i = 1; i <= 4; i++) { %>
-            <div class="mb-4 flex items-center">
-                <input type="radio" id="options<%= i %>" name="options" value="<%= i %>" <% if (optionsArray.includes(optionsArray[i - 1])) { %> checked <% } %> required>
-                <label for="option<%= i %>" class="block text-sm font-semibold ml-2">Option <%= i %>:</label>
-                <input type="text" id="option<%= i %>" name="option<%= i %>" value="<%= optionsArray[i - 1] || '' %>" required class="w-full p-2 border rounded ml-2">
-            </div>
-        <% } %>
-        
+      <div class="mb-4">
+    <label for="options" class="block text-sm font-semibold">Options:</label>
+    <% const optionsArray = Quests.options ? Quests.options.replace(/[{}"]/g, '').split(',') : []; %>
+    <% const formattedOptions = optionsArray.map(option => `"${option.trim()}"`).join(','); %>
+    <input type="text" id="options" name="options" value="{<%= formattedOptions %>" class="w-5/6 p-2 border rounded ml-2" required>
+</div>
 
         <div class="mb-4">
             <label for="answer" class="block text-sm font-semibold">Correct Answer:</label>
-            <span id="displayedAnswer" class="block text-sm ml-2"><%= Quests.correctAnswer %></span>
-            <input type="hidden" id="answer" name="answer" value="<%= Quests.correctAnswer %>" required>
+            <input type="text" id="answer" name="answer" value="<%= Quests.answer %>" class="w-5/6 p-2 border rounded ml-2" required>
         </div>
-
-        <div>
             <button type="submit" class="btn btn-success">Update</button>
         </div>
     </form>
