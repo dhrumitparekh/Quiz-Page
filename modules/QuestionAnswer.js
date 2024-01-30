@@ -91,6 +91,7 @@ async function getAllQuestions(){
 try {
 const allQuestions = await Questions.findAll({
 include: [{ model: Type }, { model: Answers }],
+order:[['id','ASC']],
 });
 if (allQuestions.length > 0) {
 return allQuestions;
@@ -133,18 +134,32 @@ function getQuestionsByType(quetype) {
             where: { qtype: quetype },
           },
         ],
+        order: [['id', 'ASC']],
       });
 
       if (!filteredQuestions || filteredQuestions.length === 0) {
         reject('No questions found for this type');
       } else {
-        resolve(filteredQuestions);
+        const answers = await Answers.findAll();
+        const questionsWithAnswers = filteredQuestions.map((question) => {
+          const answer = answers.find(a => a.answerId === question.id);
+          return {
+            id: question.id,
+            questype: question.questype,
+            question: question.question,
+            options: question.options,
+            answer: answer ? answer.answer : null,
+          };
+        });
+
+        resolve(questionsWithAnswers);
       }
     } catch (error) {
       reject(error);
     }
   });
 }
+
 
 function addQuestion(QuestionData) {
   return new Promise(async (resolve,reject)=>{
