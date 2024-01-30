@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body class="bg-gray-200">
-  <% include('partials/navbar', {page: '/'}) %>
+  <% include('partials/navbar', {page: '/'}) %> 
   <div class="container mx-auto p-8">
     <% quest.forEach((question, questionIndex) => { %>
       <div class="max-w-md mx-auto bg-white rounded-md shadow-md p-6 question-container" id="quizContainer<%= questionIndex %>"<% if (questionIndex !== 0) { %> style="display: none;"<% } %>>
@@ -16,25 +16,24 @@
        
         <div id="options">
           <% if (typeof question.options === 'string') {
-                const optionsArray = question.options.split(',');
-                optionsArray.forEach((option, index) => { %>
-                  <label>
-                    <input type="radio" id="test" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= question.answer %>')">
-                    <%= option.trim().replace(/[{}"]/g, '') %>
-                    
-                  </label><br>
-                <% });
-            } else if (Array.isArray(question.options)) {
-                question.options.forEach((option, index) => { %>
-                  <label>
-                    <input type="radio" id="test" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= question.answer %>')">
-                    <%= option.trim().replace(/[{}"]/g, '') %>
-                  </label><br>
-                <% });
-            } else { %>
-              <p>Error loading the options for this question.</p>
-            <% } %>
-        </div>
+            const optionsArray = question.options.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+            optionsArray.forEach((option, index) => { %>
+              <label>
+                <input type="radio" id="option<%= index %>" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= question.answer %>')">
+                <%= option.trim().replace(/[{}"]/g, '') %>
+              </label><br>
+            <% });
+        } else if (Array.isArray(question.options)) {
+            questions.options.forEach((option, index) => { %>
+              <label>
+                <input type="radio" id="option<%= index %>" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= question.answer %>')">
+                <%= option.trim().replace(/[{}"]/g, '') %>
+              </label><br>
+            <% });
+        } else { %>
+          <p>Error loading the options for this question.</p>
+        <% } %>
+    </div>
         
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" id="nextButton" onclick="nextQuestion(<%= questionIndex %>)">Next</button>
       </div>
