@@ -162,9 +162,19 @@ function getQuestionsByType(quetype) {
 
 
 function addQuestion(QuestionData) {
-  return new Promise(async (resolve,reject)=>{
+  return new Promise(async (resolve, reject) => {
     try {
-      await Questions.create(QuestionData);
+      const createdQuestion = await Questions.create(QuestionData);
+      const { answer } = QuestionData;
+
+   
+      if (answer) {
+        await Answers.create({
+          answer: answer,
+          answerId: createdQuestion.id, 
+        });
+      }
+
       resolve();
     } catch (err) {
       reject(err.errors[0].message);
@@ -172,22 +182,52 @@ function addQuestion(QuestionData) {
   });
 }
 
-const editQuestion = async (empId, updatedData) => {
+
+
+const editQuestion = async (questionId, updatedQuestionData) => {
+  const transaction = await sequelize.transaction();
+
   try {
-    if (empId !== undefined) {
-      await Questions.update(updatedData, { where: { id: empId } });
-    } else {
-      throw new Error("Invalid or undefined empId");
+    
+    await Questions.update(updatedQuestionData, { where: { id: questionId }, transaction });
+    const updatedQuestion = await Questions.findOne({ where: { id: questionId }, transaction });
+
+    if (!updatedQuestion) {
+      throw new Error('Question not found after update');
     }
+
+    const { answer } = updatedQuestionData;
+
+    if (answer) {
+      const foundAnswer = await Answers.findOne({ where: { answerId: updatedQuestion.id }, transaction });
+      if (!foundAnswer) {
+        throw new Error('Associated answer not found');
+      }
+      await Answers.update({ answer }, { where: { answerId: updatedQuestion.id }, transaction });
+    }
+    await transaction.commit();
   } catch (err) {
+    await transaction.rollback();
     throw err;
   }
 };
 
 const deleteQuestion = async (QuestId) => {
+  const transaction = await sequelize.transaction();
   try {
-    await Questions.destroy({ where: { id: QuestId } });
+    
+    const foundQuestion = await Questions.findOne({ where: { id: QuestId }, transaction });
+
+    if (!foundQuestion) {
+      throw new Error('Question not found');
+    }
+
+    await Answers.destroy({ where: { answerId: foundQuestion.id }, transaction });
+    await Questions.destroy({ where: { id: QuestId }, transaction });
+    await transaction.commit();
   } catch (err) {
+    
+    await transaction.rollback();
     throw err;
   }
 };
@@ -205,4 +245,3 @@ throw err;
 
 
 module.exports = { Initialize,getAllQuestions,getQuestionsById,getQuestionsByType,addQuestion,getAllTypes,deleteQuestion,editQuestion };
-
