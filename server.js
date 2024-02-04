@@ -104,10 +104,10 @@ QuizData.Initialize()
     
     Data.post('/questions/editQuestion',async (req, res) => {
       try {
-        const empId = req.body.id; 
+        const queID = req.body.id; 
         const updatedData = req.body; 
     
-        await QuizData.editQuestion(empId, updatedData);
+        await QuizData.editQuestion(queID, updatedData);
     
         res.redirect('/questions');
       } catch (err) {
