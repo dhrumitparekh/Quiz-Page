@@ -1,41 +1,107 @@
-<link rel="stylesheet" href="/css/main.css">
-<%- include('partials/navbar',{page:'/questions/editQuestion'}) %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee Information</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <% include('partials/navbar', { page: '/employeeData/editEmployees/' }) %>
 
-<div class="container mx-auto">
-    <div class="hero bg-base-200 rounded-lg p-6">
-        <div class="hero-content text-center">
-            <div class="max-w-md">
-                <h1 class="text-5xl font-bold">Edit Question</h1>
-                <p class="py-6">Use the form below to edit the question</p>
+    <div class="container mx-auto p-4">
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1  id="empId" class="text-5xl font-bold">Edit Employees: <%= Emp.id %></h1>
+                    <p class="py-6">Use the below form to update the details of <%= Emp.first_name %> <%= Emp.last_name %> Employee </p>
+                </div>
             </div>
         </div>
+        <br>
+  
+        <form action="/employeeData/editEmployees" method="post">
+  
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-0">
+            
+            <div class="mb-6">
+                <label for="id" class="block text-sm font-semibold">Employee ID :</label>
+                <input type="number" id="id" name="id" value="<%= Emp.id %>" required class="w-full p-2 border rounded">
+            </div>
+    
+                
+              <div class="mb-6">
+                <label for="first_name" class="block text-sm font-semibold">Employee First Name:</label>
+                <input type="text" id="first_name" name="first_name" required="" value="<%= Emp.first_name %>" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:border-blue-300">
+              </div>
+
+              <div class="mb-6">
+                <label for="last_name" class="block text-sm font-semibold">Employee Last Name:</label>
+                <input type="text" id="last_name" name="last_name" required="" value="<%= Emp.last_name %>" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:border-blue-300">
+            </div>
+            
+                <div class="mb-6">
+                    <label for="email" class="block text-sm font-semibold">Email :</label>
+                    <input type="email"  id="email" name="email" value="<%= Emp.email %>" required class="w-full p-2 border rounded">
+                </div>
+        
+          
+                <div class="mb-6">
+                    <label for="phone" class="block text-sm font-semibold">Phone :</label>
+                    <input type="text" id="phone" name="phone" value="<%= Emp.phone %>" required class="w-full p-2 border rounded">
+                </div>
+        
+                <div class="mb-6">
+                    <label for="gender" class="block text-sm font-semibold">Gender :</label>
+                    <input type="text" id="gender" name="gender" value="<%= Emp.gender %>" required class="w-full p-2 border rounded">
+                </div>
+        
+                <div class="mb-6">
+                    <label for="age" class="block text-sm font-semibold">Age :</label>
+                    <input type="number" id="age" name="age"  value="<%= Emp.age %>" required class="w-full p-2 border rounded">
+                </div>
+        
+                <div class="mb-6">
+                    <label for="job_title" class="block text-sm font-semibold">Job title:</label>
+                    <select id="job_title" name="job_title" required class="w-full p-2 border rounded">
+                        <% Job.forEach(jobTitle => { %>
+                            <option value="<%= jobTitle.id %>"><%= jobTitle.Job_title %></option>
+                          <% }) %>
+                    </select>
+                </div>
+                
+        
+                <div class="mb-6">
+                    <label for="years_of_experience" class="block text-sm font-semibold">Employee Experience :</label>
+                    <input type="number" id="years_of_experience" value="<%= Emp.years_of_experience%>" name="years_of_experience" required class="w-full p-2 border rounded">
+                </div>
+        
+                <div class="mb-6">
+                    <label for="salary" class="block text-sm font-semibold">Salary :</label>
+                    <input type="number" id="salary" name="salary" value="<%= Emp.salary %>" required class="w-full p-2 border rounded">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="department" class="block text-sm font-semibold">Department:</label>
+                    <select id="department" name="department" required class="w-full p-2 border rounded">
+                        <% Dep.forEach(department => { %>
+                            <option value="<%= department.id %>"><%= department.Department %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="Image" class="block text-sm font-semibold">Image :</label>
+                    <input type="url" id="Image" name="Image" value="<%= Emp.Image %>" required class="w-full p-2 border rounded">
+                </div>
+            </div>
+          </div>
+  
+          <div class="mt-6">
+            <button type="submit" class="btn btn-success">Update Employee</button>
+            <a href="/employeeData/deleteEmployee/<%= Emp.id %>" class="btn btn-error">Delete Employee</a>
+          </div>
+  
+        </form>
     </div>
-
-    <br><br><br>
-
-    <form action="/questions/editQuestion" method="post">
-        <div class="mb-4">
-            <label for="id" class="block text-sm font-semibold">Question ID :</label>
-            <input type="number" id="id" name="id" value="<%= Quests.id %>" required class="w-full p-2 border rounded" readonly>
-        </div>
-
-        <div class="mb-4">
-            <label for="question" class="block text-sm font-semibold">Question :</label>
-            <input type="text" id="question" name="question" value="<%= Quests.question %>" required class="w-full p-2 border rounded">
-        </div>
-
-      <div class="mb-4">
-    <label for="options" class="block text-sm font-semibold">Options:</label>
-    <% const optionsArray = Quests.options ? Quests.options.replace(/[{}"]/g, '').split(',') : []; %>
-    <% const formattedOptions = optionsArray.map(option => `"${option.trim()}"`).join(','); %>
-    <input type="text" id="options" name="options" value="{<%= formattedOptions %>" class="w-5/6 p-2 border rounded ml-2" required>
-</div>
-
-        <div class="mb-4">
-            <label for="answer" class="block text-sm font-semibold">Correct Answer:</label>
-            <input type="text" id="answer" name="answer" value="<%= Quests.answer %>" class="w-5/6 p-2 border rounded ml-2" required>
-        </div>
-            <button type="submit" class="btn btn-success">Update</button>
-        </div>
-    </form>
-</div>
+</html>
