@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/css/main.css" />
+<html data-theme="light"></html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Data</title>
+</head>
+<body>
+  <%- include('partials/navbar', {page: '' }) %>
+
+    <div class="container mx-auto">
+
+      <div class="hero bg-base-200">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+          <img src="https://imgs.search.brave.com/LI_PgMqkSXptMQehNTLC2xuHBWKZCrUZiX0pfHwtj00/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTE0/NDMyMjYwOS92ZWN0/b3IvZXJyb3ItbWVz/c2FnZS13aW5kb3ct/aW4teW91ci1kZXZp/Y2UuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPXVwWnRWRWxa/MW9BNUpTVVB0OXVt/S09DNUVGdEtuMF9a/OENPUzFtNld2SmM9"
+            class="max-w-sm rounded-lg shadow-2xl" />
+          <div>
+            <h1 class="text-5xl font-bold">Oops!</h1>
+            <p class="py-6">
+              <%= message %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</body>
+</html>
