@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body class="bg-gray-200">
-  <% include('partials/navbar', {page: '/'}) %> 
+  <%- include('partials/navbar', {page: '/questions'}) %>  
   <div class="container mx-auto p-8">
     <% quest.forEach((question, questionIndex) => { %>
       <div class="max-w-md mx-auto bg-white rounded-md shadow-md p-6 question-container" id="quizContainer<%= questionIndex %>"<% if (questionIndex !== 0) { %> style="display: none;"<% } %>>
@@ -19,14 +19,14 @@
             const optionsArray = question.options.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
             optionsArray.forEach((option, index) => { %>
               <label>
-                <input type="radio" id="option<%= index %>" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= question.answer %>')">
+                <input type="radio" id="option<%= index %>" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>','<%= btoa(question.answer) %>')">
                 <%= option.trim().replace(/[{}"]/g, '') %>
               </label><br>
             <% });
         } else if (Array.isArray(question.options)) {
             questions.options.forEach((option, index) => { %>
               <label>
-                <input type="radio" id="option<%= index %>" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= question.answer %>')">
+                <input type="radio" id="option<%= index %>" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= btoa(question.answer) %>')">
                 <%= option.trim().replace(/[{}"]/g, '') %>
               </label><br>
             <% });
@@ -63,6 +63,7 @@
 
     function checkAnswer(selectedOption, correctOption) 
     {
+      correctOption = atob(correctOption);
       if (selectedOption == correctOption) {
         currentScore += 100;
       }
