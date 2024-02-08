@@ -18,14 +18,14 @@
 const optionsArray = questions.options.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
 optionsArray.forEach((option, index) => { %>
 <label>
-<input type="radio" id="test" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= questions.answer.replace(/[{}"]/g, '') %>')">
+<input type="radio" id="test" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= btoa(questions.answer.replace(/[{}"]/g, '')) %>')">
 <%= option.trim().replace(/[{}"]/g, '') %>
 </label><br>
 <% });
 } else if (Array.isArray(questions.options)) {
 questions.options.forEach((option, index) => { %>
 <label>
-<input type="radio" id="test" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= questions.answer.replace(/[{}"]/g, '') %>')">
+<input type="radio" id="test" name="option" value="<%= index %>" onclick="checkAnswer('<%= option.replace(/[{}"]/g, '') %>', '<%= btoa(questions.answer.replace(/[{}"]/g, '')) %>')">
 <%= option.trim().replace(/[{}"]/g, '') %>
 </label><br>
 <% });
@@ -46,6 +46,7 @@ questions.options.forEach((option, index) => { %>
 let currentScore = 0;
 
 function checkAnswer(selectedOption, correctOption) {
+    correctOption = atob(correctOption);
 if (selectedOption == correctOption) {
 currentScore += 100;
 }
