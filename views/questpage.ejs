@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz Types</title>
- 
+  <%- include('partials/navbar',{page:'/TypePage'}) %>
   <link rel="stylesheet" href="/css/main.css" />
 </head>
 <body class="flex flex-wrap gap-4 p-4">
@@ -26,6 +26,10 @@
        <br><br><br>
         <div class="card-actions">
           <button class="btn btn-primary" onclick="location.href='/questions?type=<%= typ.qtype %>'"><%= typ.qtype %></button>
+          <% if (session.user.role === 'admin') { %>
+            <button class="absolute top-2 right-2 text-red-500" onclick="location.href='/deleteType/<%= typ.type_id %>'">❌</button>
+          <% } %>
+        </figure>
       </div>
       </div>
     </div>
