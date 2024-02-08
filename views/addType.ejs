@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/css/main.css">
+<%- include('partials/navbar', { page: '/addType' }) %>
+
+<div class="container mx-auto">
+    <div class="hero bg-base-200 rounded-lg p-6">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Add New Type</h1>
+                <p class="py-6">Use the form below to add a new type</p>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <form action="/addType" method="post">
+        
+        <div class="mb-4">
+            <label for="qtype" class="block text-sm font-semibold">Type Name:</label>
+            <input type="text" id="qtype" name="qtype" required class="w-full p-2 border rounded">
+        </div>
+
+        <div class="mb-4">
+            <label for="Img" class="block text-sm font-semibold">Image URL:</label>
+            <input type="text" id="Img" name="Img" required class="w-full p-2 border rounded">
+        </div>
+
+        <button type="submit" class="btn btn-success">Add Type</button>
+    </form>
+</div>
