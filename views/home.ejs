@@ -1,120 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="valentine">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Quiz</title>
-  <link rel="stylesheet" href="/css/main.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Login</title>
+    <style>
+        input {
+            height: 35px;
+            padding: 4px;
+        }
+    </style>
 </head>
-<body class="bg-gray-200">
-  <%- include('partials/navbar', {page: '/'}) %>
-  <div class="container mx-auto p-8">
-    <div class="max-w-md mx-auto bg-white rounded-md shadow-md p-6" id="quizContainer">
-      <h2 id="question" class="text-lg font-bold mb-4">Question</h2>
 
-      <div id="options">
-      
-      </div>
+<body tabindex="-1">
+    <%- include('partials/navbar', {page: '/' }) %>
+        <% if (errorMessage) { %>
+            <div class="alert alert-error" role="alert">
+                <span>
+                    <%= errorMessage %>
+                </span>
+            </div>
+            <% } %>
+                <div class="px-3">
+                    <div class="hero bg-base-200 rounded-lg p-6">
+                        <div class="hero-content text-center ">
+                            <div class="max-w-md">
+                                <h1 class="text-5xl">Login</h1>
+                                <p class="mt-2">Please provide your credentials below</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="/" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block font-bold mb-2">User Name</label>
+                            <input type="text" id="userName" name="userName" required
+                                class="form-input w-full rounded border p-3 h-10">
+                        </div>
 
-      <button id="nextButton" class="hidden bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onclick="nextQuestion()">Next</button>
-    </div>
+                        <div class="mb-4">
+                            <label for="year" class="block font-bold mb-2">Password</label>
+                            <input type="password" id="password" name="password" required
+                                class="form-input w-full rounded border p-3 h-10">
+                        </div>
 
-    <div class="hidden mt-8" id="scoreContainer">
-      <h2 class="text-lg font-bold mb-4">Quiz Score</h2>
-      <p id="correctAnswers"></p>
-      <p id="incorrectAnswers"></p>
-    </div>
-  </div>
 
-  <script>
-    const questions = [
-      {
-        question: 'Which of the following is NOT a pillar of OOP?',
-        options: [ 'Inheritance','Polymorphism','Abstraction','Recursion'],
-        correctAnswer: 'Recursion'
-      },
-      {
-        question: 'Which of the following is NOT a pillar of OOP?',
-        options: [ 'Inheritance','Polymorphism','Abstraction','Recursion'],
-        correctAnswer: 'Recursion'
-      },
-      
-      
-    ];
+                        <div class="flex items-center justify-between gap-4">
+                            <button type="submit" class="btn btn-success">Login</button>
+                        </div>
 
-    let currentQuestionIndex = 0;
-    let correctCount = 0;
-    let incorrectCount = 0;
 
-    function displayQuestion(questionIndex) {
-      const question = questions[questionIndex];
-      document.getElementById('question').textContent = question.question;
-
-      const optionsContainer = document.getElementById('options');
-      optionsContainer.innerHTML = '';
-
-      question.options.forEach((option, index) => {
-        const optionElement = document.createElement('label');
-        optionElement.classList.add('block', 'mb-2');
-
-        const radioInput = document.createElement('input');
-        radioInput.setAttribute('type', 'radio');
-        radioInput.setAttribute('name', 'option');
-        radioInput.setAttribute('value', option);
-        radioInput.classList.add('mr-2');
-        radioInput.setAttribute('onclick', 'checkAnswer(this)');
-        optionElement.appendChild(radioInput);
-
-        const optionText = document.createTextNode(option);
-        optionElement.appendChild(optionText);
-
-        optionsContainer.appendChild(optionElement);
-      });
-    }
-
-    function checkAnswer(selectedOption) {
-      const question = questions[currentQuestionIndex];
-      const selectedValue = selectedOption.value;
-      if (selectedValue === question.correctAnswer) {
-        selectedOption.parentElement.classList.add('text-green-500');
-        correctCount++;
-      } else {
-        selectedOption.parentElement.classList.add('text-red-500');
-        const correctOptionIndex = question.options.indexOf(question.correctAnswer);
-        const correctOption = document.getElementsByName('option')[correctOptionIndex];
-        correctOption.parentElement.classList.add('text-green-500');
-        incorrectCount++;
-      }
-      const nextButton = document.getElementById('nextButton');
-      nextButton.classList.remove('hidden');
-    }
-
-    function nextQuestion() {
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        displayQuestion(currentQuestionIndex);
-        const options = document.getElementsByName('option');
-        options.forEach(option => {
-          option.parentElement.classList.remove('text-red-500', 'text-green-500');
-          option.checked = false;
-        });
-        document.getElementById('nextButton').classList.add('hidden');
-      } else {
-        showScore();
-      }
-    }
-
-    function showScore() {
-      document.getElementById('quizContainer').classList.add('hidden');
-      document.getElementById('scoreContainer').classList.remove('hidden');
-
-      const correctAnswers = document.getElementById('correctAnswers');
-      correctAnswers.textContent = `Correct Answers: ${correctCount}`;
-
-      const incorrectAnswers = document.getElementById('incorrectAnswers');
-      incorrectAnswers.textContent = `Incorrect Answers: ${incorrectCount}`;
-    }
-
-    displayQuestion(currentQuestionIndex); 
-  </script>
+                    </form>
+                </div>
 </body>
+
 </html>
