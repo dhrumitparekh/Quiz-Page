@@ -112,7 +112,7 @@ include: [{ model: Type }],
 const answers = await Answers.findAll();
 const answer = answers.find(a => a.answerId === foundQuestion.id);
 if (answer) {
-  foundQuestion.answer = answer.answer;
+foundQuestion.answer = answer.answer;
 }
 if (foundQuestion) {
 return foundQuestion;
@@ -125,111 +125,145 @@ throw new Error('Error fetching question');
 }
 
 function getQuestionsByType(quetype) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const filteredQuestions = await Questions.findAll({
-        include: [
-          {
-            model: Type,
-            where: { qtype: quetype },
-          },
-        ],
-        order: [['id', 'ASC']],
-      });
+return new Promise(async (resolve, reject) => {
+try {
+const filteredQuestions = await Questions.findAll({
+include: [
+{
+model: Type,
+where: { qtype: quetype },
+},
+],
+order: [['id', 'ASC']],
+});
 
-      if (!filteredQuestions || filteredQuestions.length === 0) {
-        reject('No questions found for this type');
-      } else {
-        const answers = await Answers.findAll();
-        const questionsWithAnswers = filteredQuestions.map((question) => {
-          const answer = answers.find(a => a.answerId === question.id);
-          return {
-            id: question.id,
-            questype: question.questype,
-            question: question.question,
-            options: question.options,
-            answer: answer ? answer.answer : null,
-          };
-        });
+if (!filteredQuestions || filteredQuestions.length === 0) {
+reject('No questions found for this type');
+} else {
+const answers = await Answers.findAll();
+const questionsWithAnswers = filteredQuestions.map((question) => {
+const answer = answers.find(a => a.answerId === question.id);
+return {
+id: question.id,
+questype: question.questype,
+question: question.question,
+options: question.options,
+answer: answer ? answer.answer : null,
+};
+});
 
-        resolve(questionsWithAnswers);
-      }
-    } catch (error) {
-      reject(error);
-    }
-  });
+resolve(questionsWithAnswers);
+}
+} catch (error) {
+reject(error);
+}
+});
+}
+
+
+async function deleteType(typeId) {
+const transaction = await sequelize.transaction();
+
+try {
+const foundType = await Type.findOne({ where: { type_id: typeId }, transaction });
+
+if (!foundType) {
+throw new Error('Type not found');
+}
+
+await Questions.destroy({ where: { questype: foundType.type_id }, transaction });
+await Type.destroy({ where: { type_id: typeId }, transaction });
+
+await transaction.commit();
+} catch (err) {
+await transaction.rollback();
+throw err;
+}
+}
+
+async function addType(typeData) {
+try {
+const newType = await Type.create(typeData);
+return newType;
+} catch (err) {
+if (err.name === 'SequelizeUniqueConstraintError' && err.fields.includes('type_id')) {
+throw 'Type Id must be unique.';
+} else {
+throw err.errors[0].message;
+}
+}
 }
 
 
 function addQuestion(QuestionData) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const createdQuestion = await Questions.create(QuestionData);
-      const { answer } = QuestionData;
+return new Promise(async (resolve, reject) => {
+try {
+const createdQuestion = await Questions.create(QuestionData);
+const { answer } = QuestionData;
 
-   
-      if (answer) {
-        await Answers.create({
-          answer: answer,
-          answerId: createdQuestion.id, 
-        });
-      }
 
-      resolve();
-    } catch (err) {
-      reject(err.errors[0].message);
-    }
-  });
+if (answer) {
+await Answers.create({
+answer: answer,
+answerId: createdQuestion.id,
+});
+}
+
+resolve();
+} catch (err) {
+reject(err.errors[0].message);
+}
+});
 }
 
 
 
 const editQuestion = async (questionId, updatedQuestionData) => {
-  const transaction = await sequelize.transaction();
+const transaction = await sequelize.transaction();
 
-  try {
-    
-    await Questions.update(updatedQuestionData, { where: { id: questionId }, transaction });
-    const updatedQuestion = await Questions.findOne({ where: { id: questionId }, transaction });
+try {
 
-    if (!updatedQuestion) {
-      throw new Error('Question not found after update');
-    }
+await Questions.update(updatedQuestionData, { where: { id: questionId }, transaction });
+const updatedQuestion = await Questions.findOne({ where: { id: questionId }, transaction });
 
-    const { answer } = updatedQuestionData;
+if (!updatedQuestion) {
+throw new Error('Question not found after update');
+}
 
-    if (answer) {
-      const foundAnswer = await Answers.findOne({ where: { answerId: updatedQuestion.id }, transaction });
-      if (!foundAnswer) {
-        throw new Error('Associated answer not found');
-      }
-      await Answers.update({ answer }, { where: { answerId: updatedQuestion.id }, transaction });
-    }
-    await transaction.commit();
-  } catch (err) {
-    await transaction.rollback();
-    throw err;
-  }
+const { answer } = updatedQuestionData;
+
+if (answer) {
+const foundAnswer = await Answers.findOne({ where: { answerId: updatedQuestion.id }, transaction });
+if (!foundAnswer) {
+throw new Error('Associated answer not found');
+}
+await Answers.update({ answer }, { where: { answerId: updatedQuestion.id }, transaction });
+}
+await transaction.commit();
+} catch (err) {
+await transaction.rollback();
+throw err;
+}
 };
 
 const deleteQuestion = async (QuestId) => {
-  const transaction = await sequelize.transaction();
-  try {
-    
-    const foundQuestion = await Questions.findOne({ where: { id: QuestId }, transaction });
+const transaction = await sequelize.transaction();
+try {
 
-    if (!foundQuestion) {
-      throw new Error('Question not found');
-    }
+const foundQuestion = await Questions.findOne({ where: { id: QuestId }, transaction });
 
-    await Answers.destroy({ where: { answerId: foundQuestion.id }, transaction });
-    await Questions.destroy({ where: { id: QuestId }, transaction });
-    await transaction.commit();
-  } catch (err) {
-    
-    await transaction.rollback();
-    throw err;
-  }
+if (!foundQuestion) {
+throw new Error('Question not found');
+}
+
+await Answers.destroy({ where: { answerId: foundQuestion.id }, transaction });
+await Questions.destroy({ where: { id: QuestId }, transaction });
+await transaction.commit();
+} catch (err) {
+
+await transaction.rollback();
+throw err;
+}
 };
 
 
@@ -244,4 +278,4 @@ throw err;
 
 
 
-module.exports = { Initialize,getAllQuestions,getQuestionsById,getQuestionsByType,addQuestion,getAllTypes,deleteQuestion,editQuestion };
+module.exports = { Initialize,getAllQuestions,getQuestionsById,getQuestionsByType,addQuestion,getAllTypes,deleteQuestion,editQuestion,addType,deleteType};
